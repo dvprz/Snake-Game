@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Snake Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:900" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/styles.css">
+  <style>
+  </style>
+</head>
+<body>
+
+  <h1>Snake Game</h1>
+  <div class="wrapper">
+    <div id="Score">
+      <h2>Score:</h2>
+      <p id="amount">0</p>
+    </div>
+    <div id="PlayingField"></div>
+  </div>
+
+
+  <script type="text/javascript" src="./dist/index.js"></script>
+  <script>
+    const snakeGame = snakeGameFactory()
+    snakeGame.initialize()
+  </script>
+</body>
+</html>
