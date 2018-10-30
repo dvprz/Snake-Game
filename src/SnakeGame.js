@@ -209,22 +209,22 @@ export default class SnakeGame {
   _resetCoord(coord, type) {
     if (type === 'food') {
       coord.isFood = false
-      coord.el.classList.remove(FOOD_SELECTOR)
+      coord.el.classList.remove(constants.FOOD_SELECTOR)
     } else if (type === 'snake') {
       coord.isSnake = false
-      coord.el.classList.remove(SNAKE_SELECTOR)
+      coord.el.classList.remove(constants.SNAKE_SELECTOR)
     }
   }
 
   _foodifyCoord(coord) {
     coord.isFood = true
-    coord.el.classList.add(FOOD_SELECTOR)
+    coord.el.classList.add(constants.FOOD_SELECTOR)
     this._currentFoodCoord = coord
   }
 
   _snakifyCoord(coord) {
     coord.isSnake = true
-    coord.el.classList.add(SNAKE_SELECTOR)
+    coord.el.classList.add(constants.SNAKE_SELECTOR)
     this._snake.addFront(coord)
   }
 

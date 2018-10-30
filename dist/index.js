@@ -159,6 +159,8 @@
   var GAME_BOARD = 'PlayingField';
   var GAME_BOARD_CELL = 'Cell';
   var AMOUNT = 'amount';
+  var FOOD_SELECTOR = 'is-food';
+  var SNAKE_SELECTOR = 'is-snake';
   var LEFT_ARROW = 37;
   var RIGHT_ARROW = 39;
   var UP_ARROW = 38;
