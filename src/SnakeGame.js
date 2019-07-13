@@ -1,16 +1,26 @@
 import Queue from './structures/Queue'
 import Deque from './structures/Deque'
 import { getRandomNumber } from './helper'
-import * as constants from './constants'
+import {
+  AMOUNT,
+  GAME_BOARD,
+  GAME_BOARD_CELL,
+  FOOD_SELECTOR,
+  SNAKE_SELECTOR,
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  UP_ARROW,
+  DOWN_ARROW
+} from './constants'
 
 const doc = document
 
 export default class SnakeGame {
 
   constructor() {
-    this._gameboard = doc.querySelector(`#${constants.GAME_BOARD}`)
+    this._gameboard = doc.querySelector(`#${GAME_BOARD}`)
     this._score = null
-    this._scoreEl = doc.querySelector(`#${constants.AMOUNT}`)
+    this._scoreEl = doc.querySelector(`#${AMOUNT}`)
     this._cellsPerRow = 20
     this._totalCells = Math.pow(this._cellsPerRow, 2)
     this._moves = new Queue()
@@ -35,10 +45,10 @@ export default class SnakeGame {
 
     /* Return if we didn't get an approved key */
     if (
-      !( keyCode === constants.LEFT_ARROW ) &&
-      !( keyCode === constants.RIGHT_ARROW ) &&
-      !( keyCode === constants.DOWN_ARROW ) &&
-      !( keyCode === constants.UP_ARROW )
+      !( keyCode === LEFT_ARROW ) &&
+      !( keyCode === RIGHT_ARROW ) &&
+      !( keyCode === DOWN_ARROW ) &&
+      !( keyCode === UP_ARROW )
     ) {
       return false
     }
@@ -55,13 +65,13 @@ export default class SnakeGame {
     moving left and the user goes right
     moving down and the user goes up
     moving up and the user goes down */
-    if (this._currentDirection === constants.RIGHT_ARROW && keyCode === constants.LEFT_ARROW) {
+    if (this._currentDirection === RIGHT_ARROW && keyCode === LEFT_ARROW) {
       return false
-    } else if (this._currentDirection === constants.LEFT_ARROW && keyCode === constants.RIGHT_ARROW) {
+    } else if (this._currentDirection === LEFT_ARROW && keyCode === RIGHT_ARROW) {
       return false
-    } else if (this._currentDirection === constants.DOWN_ARROW && keyCode === constants.UP_ARROW) {
+    } else if (this._currentDirection === DOWN_ARROW && keyCode === UP_ARROW) {
       return false
-    } else if (this._currentDirection === constants.UP_ARROW && keyCode === constants.DOWN_ARROW) {
+    } else if (this._currentDirection === UP_ARROW && keyCode === DOWN_ARROW) {
       return false
     }
 
@@ -115,19 +125,19 @@ export default class SnakeGame {
 
     // check to see if the next coord runs into an edge
     switch (direction) {
-      case constants.RIGHT_ARROW :
+      case RIGHT_ARROW :
         col++
         if (col > right) return this.killGame()
         break
-      case constants.LEFT_ARROW :
+      case LEFT_ARROW :
         col--
         if (col < left) return this.killGame()
         break
-      case constants.DOWN_ARROW :
+      case DOWN_ARROW :
         row++
         if (row > bottom) return this.killGame()
         break
-      case constants.UP_ARROW :
+      case UP_ARROW :
         row--
         if (row < top) return this.killGame()
         break
@@ -208,22 +218,22 @@ export default class SnakeGame {
   _resetCoord(coord, type) {
     if (type === 'food') {
       coord.isFood = false
-      coord.el.classList.remove(constants.FOOD_SELECTOR)
+      coord.el.classList.remove(FOOD_SELECTOR)
     } else if (type === 'snake') {
       coord.isSnake = false
-      coord.el.classList.remove(constants.SNAKE_SELECTOR)
+      coord.el.classList.remove(SNAKE_SELECTOR)
     }
   }
 
   _foodifyCoord(coord) {
     coord.isFood = true
-    coord.el.classList.add(constants.FOOD_SELECTOR)
+    coord.el.classList.add(FOOD_SELECTOR)
     this._currentFoodCoord = coord
   }
 
   _snakifyCoord(coord) {
     coord.isSnake = true
-    coord.el.classList.add(constants.SNAKE_SELECTOR)
+    coord.el.classList.add(SNAKE_SELECTOR)
     this._snake.addFront(coord)
   }
 
@@ -259,7 +269,7 @@ export default class SnakeGame {
         }
       }
 
-      coord.el.classList.add(constants.GAME_BOARD_CELL)
+      coord.el.classList.add(GAME_BOARD_CELL)
       coord.el.style.top = position.top + 'px'
       coord.el.style.left = position.left + 'px'
       fragment.appendChild(coord.el)
