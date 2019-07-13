@@ -107,7 +107,6 @@ export default class SnakeGame {
   }
 
   _getNewCoord(coord, direction) {
-    let nextCoord
     let { row, col } = coord
     const right = this._cellsPerRow - 1
     const bottom = (this._totalCells / this._cellsPerRow ) - 1
