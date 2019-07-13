@@ -31,7 +31,7 @@ export default class SnakeGame {
   }
 
   _handleKeyUp(event) {
-    const keyCode = event.keyCode
+    const { keyCode } = event
 
     /* Return if we didn't get an approved key */
     if (
